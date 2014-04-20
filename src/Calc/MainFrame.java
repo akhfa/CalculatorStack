@@ -170,7 +170,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void TombolKonvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolKonvertActionPerformed
         // TODO add your handling code here:
         calc.ConvertToCFG();
-        calc.PrintCFG();
+        JOptionPane.showMessageDialog(null, "Konversi berhasil. Hasil tersimpan di file CFG.out");
     }//GEN-LAST:event_TombolKonvertActionPerformed
 
     /**
