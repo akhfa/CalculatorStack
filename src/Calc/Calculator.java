@@ -9,8 +9,6 @@ package Calc;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine; 
@@ -63,7 +61,7 @@ public class Calculator {
         }
     }
     
-    public boolean Validate()
+    public boolean InputValid()
     {
         boolean ketemu = false;
         String cc = "" + input.charAt(0);
@@ -75,14 +73,14 @@ public class Calculator {
         while (!ketemu && i <= input.length())
         {
             System.out.println("i = " + i);
-            try
-            {
+            //try
+            //{
                 if(IsNumeric(""+cc))
                 {
                     cc = "A";
                 }
                 NextAndAksi = GetNextStateAndAksi(""+Asal, cc, ""+StackInput.peek());
-                System.out.println("PrintGetNextState dari "+Asal+" dengan input " + cc + " dan TOS = "+StackInput.peek());
+                //System.out.println("PrintGetNextState dari "+Asal+" dengan input " + cc + " dan TOS = "+StackInput.peek());
                 
                 /* Jika ketemu kurung tutup */
                 if(Asal == '0' && cc.compareToIgnoreCase(")") == 0)
@@ -105,34 +103,32 @@ public class Calculator {
                     System.out.println("");
                 }
                 
-            }
-            catch(NullPointerException ex)
-            {
-                JOptionPane.showMessageDialog(null, Asal + " " + cc + "tidak ditemukan");
-                System.exit(0);
-            }
-            
-            if(NextAndAksi[1].compareToIgnoreCase("push") == 0)
-            {
-                StackInput.push(cc);
-            }
-            else if(NextAndAksi[1].compareToIgnoreCase("pop") == 0)
-            {
-                StackInput.pop();
-            }
-            Asal = NextAndAksi[0].charAt(0);
-            if(Asal == '6')
-            {
-                System.out.println("ketemu = true");
-                ketemu = true;
-            }
-            else
-            {
-                cc = "" + input.charAt(i);
-                System.out.println("Asal : " + Asal + " cc : " + cc);
-                i++;
-            }
-            
+            //}
+            //catch(NullPointerException ex)
+            //{
+                //JOptionPane.showMessageDialog(null, "Aturan transisi belum di load");
+            //    break;
+            //}
+                if(NextAndAksi[1].compareToIgnoreCase("push") == 0)
+                {
+                    StackInput.push(cc);
+                }
+                else if(NextAndAksi[1].compareToIgnoreCase("pop") == 0)
+                {
+                    StackInput.pop();
+                }
+                Asal = NextAndAksi[0].charAt(0);
+                if(Asal == '6')
+                {
+                    System.out.println("ketemu = true");
+                    ketemu = true;
+                }
+                else
+                {
+                    cc = "" + input.charAt(i);
+                    System.out.println("Asal : " + Asal + " cc : " + cc);
+                    i++;
+                }
             
         }
         return ketemu;

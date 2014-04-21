@@ -90,41 +90,41 @@ public class PDA {
     
     public void toCFG(){
         this.cekState();
-        System.out.println("CFG dari PDA anda adalah :");
+        //System.out.println("CFG dari PDA anda adalah :");
         if(finalState.isEmpty()){
             for(int i = 0; i <= nState; i++){
-                System.out.println("S -> [q0 Z q"+i+"]");
+                //System.out.println("S -> [q0 Z q"+i+"]");
                 hasil.add("S -> [q0 Z q"+i+"]");
             }
         }
         while(!finalState.isEmpty()){
-            System.out.println("S -> [q0 Z q"+finalState.get(0)+"]");
+            //System.out.println("S -> [q0 Z q"+finalState.get(0)+"]");
             hasil.add("S -> [q0 Z q"+finalState.get(0)+"]");
             finalState.remove(0);
         }
         while(!state.isEmpty()){
             if(state.get(0).s3.compareTo("null") == 0 && !(state.get(0).s2.compareTo("null") == 0)) {
-                System.out.print("[q"+state.get(0).t1+" "+state.get(0).s2+" "+"q"+state.get(0).t2+"] -> ");
+                //System.out.print("[q"+state.get(0).t1+" "+state.get(0).s2+" "+"q"+state.get(0).t2+"] -> ");
                 if( state.get(0).s1.compareTo("null") == 0){
-                    System.out.println("e");
+                    //System.out.println("e");
                     hasil.add("[q"+state.get(0).t1+" "+state.get(0).s2+" "+"q"+state.get(0).t2+"] -> e");
                 }
                 else{
-                    System.out.println(state.get(0).s1);
+                    //System.out.println(state.get(0).s1);
                     hasil.add("[q"+state.get(0).t1+" "+state.get(0).s2+" "+"q"+state.get(0).t2+"] -> " + state.get(0).s1);
                 }
             }
             else{
                 if(state.get(0).s3.length() == 2){
-                    //(q,0,Z) = (p,YZ) maka [qZr] -> 0 [pYs] [sZr] 
                     for(int i = 0; i <= nState; i++){
                         for(int j = 0; j <= nState; j++){
+                            /*
                             System.out.println("[q" + state.get(0).t1 + " " + state.get(0).s2 +
                             " q" + i + "] -> " + state.get(0).s1 + 
                             "[q" + state.get(0).t2 + " " + state.get(0).s3.substring(0, 1) +
                             " q" + j + "]" + 
                             "[q" + j + " " + state.get(0).s3.substring(1,2) +
-                            " q" + i + "]");
+                            " q" + i + "]");*/
                             hasil.add("[q" + state.get(0).t1 + " " + state.get(0).s2 +
                             " q" + i + "] -> " + state.get(0).s1 + 
                             "[q" + state.get(0).t2 + " " + state.get(0).s3.substring(0, 1) +
@@ -139,17 +139,19 @@ public class PDA {
                     for(int i = 0; i <= nState; i++){
                         if(state.get(0).s1.compareTo("null") == 0){
                             if(state.get(0).s2.compareTo("null") == 0){
+                                /*
                                 System.out.println("[q"+state.get(0).t1 + " e q" + i + "] -> " + 
                                 "[q" + state.get(0).t2 + " " + state.get(0).s3 +
-                                " q" + i + "]");
+                                " q" + i + "]");*/
                                 hasil.add("[q"+state.get(0).t1 + " e q" + i + "] -> " + 
                                 "[q" + state.get(0).t2 + " " + state.get(0).s3 +
                                 " q" + i + "]");
                             }
                             else{
+                                /*
                                 System.out.println("[q"+state.get(0).t1 + " " + state.get(0).s2 +
                                 " q" + i + "] -> " + "[q" + state.get(0).t2 + " " + state.get(0).s3 +
-                                " q" + i + "]");
+                                " q" + i + "]");*/
                                 hasil.add("[q"+state.get(0).t1 + " " + state.get(0).s2 +
                                 " q" + i + "] -> " + "[q" + state.get(0).t2 + " " + state.get(0).s3 +
                                 " q" + i + "]");
@@ -158,15 +160,17 @@ public class PDA {
                         else{
                             if(state.get(0).s2.compareTo("null") == 0){
                                 if(state.get(0).s3.compareTo("null") == 0){
+                                    /*
                                     System.out.println("[q"+state.get(0).t1 + " e q" + i + "] -> " + state.get(0).s1 +
-                                    "[q" + state.get(0).t2 + " e q" + i + "]");
+                                    "[q" + state.get(0).t2 + " e q" + i + "]");*/
                                     hasil.add("[q"+state.get(0).t1 + " e q" + i + "] -> " + state.get(0).s1 +
                                     "[q" + state.get(0).t2 + " e q" + i + "]");
                                 }
                                 else{
+                                    /*
                                     System.out.println("[q"+state.get(0).t1 + " e q" + i + "] -> " + state.get(0).s1 +
                                     "[q" + state.get(0).t2 + " " + state.get(0).s3 +
-                                    " q" + i + "]");
+                                    " q" + i + "]");*/
                                     hasil.add("[q"+state.get(0).t1 + " e q" + i + "] -> " + state.get(0).s1 +
                                     "[q" + state.get(0).t2 + " " + state.get(0).s3 +
                                     " q" + i + "]");
@@ -174,18 +178,20 @@ public class PDA {
                             }
                             else{
                                 if(state.get(0).s3.compareTo("null") == 0){
+                                    /*
                                     System.out.println("[q"+state.get(0).t1 + " " + state.get(0).s2 +
                                     " q" + i + "] -> " + state.get(0).s1 +
-                                    "[q" + state.get(0).t2 + " e q" + i + "]");
+                                    "[q" + state.get(0).t2 + " e q" + i + "]");*/
                                     hasil.add("[q"+state.get(0).t1 + " " + state.get(0).s2 +
                                     " q" + i + "] -> " + state.get(0).s1 +
                                     "[q" + state.get(0).t2 + " e q" + i + "]");
                                 }
                                 else{
+                                    /*
                                     System.out.println("[q"+state.get(0).t1 + " " + state.get(0).s2 +
                                     " q" + i + "] -> " + state.get(0).s1 +
                                     "[q" + state.get(0).t2 + " " + state.get(0).s3 +
-                                    " q" + i + "]");
+                                    " q" + i + "]");*/
                                     hasil.add("[q"+state.get(0).t1 + " " + state.get(0).s2 +
                                     " q" + i + "] -> " + state.get(0).s1 +
                                     "[q" + state.get(0).t2 + " " + state.get(0).s3 +

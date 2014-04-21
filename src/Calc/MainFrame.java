@@ -146,7 +146,16 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void TombolValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolValidateActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, calc.InputValid());
+        String input = InputTextField.getText();
+        if(input.equals(""))
+            JOptionPane.showMessageDialog(null, "Masukkan input terlebih dahulu");
+        else
+        {
+            calc.SetInput(InputTextField.getText());
+            JOptionPane.showMessageDialog(null, calc.InputValid());
+
+        }
+        
     }//GEN-LAST:event_TombolValidateActionPerformed
 
     private void TombolKonvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolKonvertActionPerformed
