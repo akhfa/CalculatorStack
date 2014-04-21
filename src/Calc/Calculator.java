@@ -112,14 +112,21 @@ public class Calculator {
                     StackInput.pop();
                 }
                 Asal = NextAndAksi[0].charAt(0);
-                if(Asal == '6')
+                if(Asal == '6' && !AdaKurungBuka(StackInput))
                 {
                     System.out.println("ketemu = true");
                     ketemu = true;
                 }
                 else
                 {
-                    cc = "" + input.charAt(i);
+                    try
+                    {
+                        cc = "" + input.charAt(i);
+                    }
+                    catch(IndexOutOfBoundsException nep)
+                    {
+                        break;
+                    }
                     System.out.println("Asal : " + Asal + " cc : " + cc);
                     i++;
                 }
@@ -224,5 +231,20 @@ public class Calculator {
     public void PrintCFG()
     {
         pda.PrintCFG();
+    }
+    
+    private boolean AdaKurungBuka(Stack S)
+    {
+        boolean kurungBuka = false;
+        String temp;
+        for(Object i : S)
+        {
+            temp = (String) i;
+            if(temp.equals("("))
+            {
+                kurungBuka = true;
+            }
+        }
+        return kurungBuka;
     }
 }

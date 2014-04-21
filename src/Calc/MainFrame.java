@@ -117,9 +117,29 @@ public class MainFrame extends javax.swing.JFrame {
         try
         {
             String input = InputTextField.getText();
-            calc.SetInput(input);
-            input = input.substring(0, input.length()-1);
-            calc.Hitung(input);
+            if(input.equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Masukkan input");
+            }
+            else
+            {
+                calc.SetInput(input);
+                System.out.println(input.charAt(input.length()-1));
+                if(input.charAt(input.length()-1) != '=')
+                {
+                    JOptionPane.showMessageDialog(null, "Kurang tanda \"=\"");
+
+                }
+                else
+                {
+                    input = input.substring(0, input.length()-1);
+                    if(calc.InputValid())
+                        calc.Hitung(input);
+                    else
+                        JOptionPane.showMessageDialog(null, "Input tidak valid");
+                }
+            }
+            
         }
         catch (NullPointerException nil)
         {
@@ -143,22 +163,7 @@ public class MainFrame extends javax.swing.JFrame {
         calc.PrintAturan();
         calc.PrintInput();
         calc.PrintFinalState();
-        /*
-        String [] temp = new String[2];
-        try
-        {
-            temp = calc.GetNextStateAndAksi("5", "=", "null");
-            for(String aturan:temp)
-            {
-                System.out.println(aturan);
-            }
-        }
-        catch(NullPointerException nil)
-        {
-            JOptionPane.showMessageDialog(null, "Null");
-        }
-        */
-        //aturan = System.A
+        
     }//GEN-LAST:event_TombolOpenActionPerformed
 
     private void TombolValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolValidateActionPerformed
@@ -169,7 +174,14 @@ public class MainFrame extends javax.swing.JFrame {
         else
         {
             calc.SetInput(InputTextField.getText());
-            JOptionPane.showMessageDialog(null, calc.InputValid());
+            boolean valid = calc.InputValid();
+            if(valid)
+                JOptionPane.showMessageDialog(null, "Input Valid");
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Input tidak Valid");
+                System.exit(0);
+            }
 
         }
         
