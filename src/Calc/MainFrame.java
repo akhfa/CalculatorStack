@@ -116,21 +116,10 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try
         {
-            if(!InputTextField.getText().equals(""))
-            {
-                String input = InputTextField.getText();
-                
-                calc.SetInput(input);
-                if(calc.InputValid())
-                {
-                    input = input.substring(0, input.length()-1);
-                    calc.Hitung(input);
-                }
-                else
-                    JOptionPane.showMessageDialog(null, "Input tidak valid");
-            }
-            else
-                JOptionPane.showMessageDialog(null, "Masukkan inputnya");
+            String input = InputTextField.getText();
+            calc.SetInput(input);
+            input = input.substring(0, input.length()-1);
+            calc.Hitung(input);
         }
         catch (NullPointerException nil)
         {
@@ -140,8 +129,36 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void TombolOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolOpenActionPerformed
         // TODO add your handling code here:
-        calc.InputAturan();
+        try
+        {
+            //String input = InputTextField.getText();
+            calc.SetInput(InputTextField.getText());
+        }
+        catch (NullPointerException nil)
+        {
+            JOptionPane.showMessageDialog(null, "Masukkan inputnya");
+        }
         
+        calc.InputAturan();
+        calc.PrintAturan();
+        calc.PrintInput();
+        calc.PrintFinalState();
+        /*
+        String [] temp = new String[2];
+        try
+        {
+            temp = calc.GetNextStateAndAksi("5", "=", "null");
+            for(String aturan:temp)
+            {
+                System.out.println(aturan);
+            }
+        }
+        catch(NullPointerException nil)
+        {
+            JOptionPane.showMessageDialog(null, "Null");
+        }
+        */
+        //aturan = System.A
     }//GEN-LAST:event_TombolOpenActionPerformed
 
     private void TombolValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TombolValidateActionPerformed

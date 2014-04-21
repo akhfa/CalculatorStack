@@ -73,8 +73,8 @@ public class Calculator {
         while (!ketemu && i <= input.length())
         {
             System.out.println("i = " + i);
-            //try
-            //{
+            try
+            {
                 if(IsNumeric(""+cc))
                 {
                     cc = "A";
@@ -83,7 +83,7 @@ public class Calculator {
                 //System.out.println("PrintGetNextState dari "+Asal+" dengan input " + cc + " dan TOS = "+StackInput.peek());
                 
                 /* Jika ketemu kurung tutup */
-                if(Asal == '0' && cc.compareToIgnoreCase(")") == 0)
+                if((Asal == '0' || Asal == '4' || Asal == '5') && cc.compareToIgnoreCase(")") == 0)
                 {
                     System.out.println("Masuk Pop");
                     while(StackInput.peek().toString().compareToIgnoreCase("(") != 0)
@@ -103,12 +103,6 @@ public class Calculator {
                     System.out.println("");
                 }
                 
-            //}
-            //catch(NullPointerException ex)
-            //{
-                //JOptionPane.showMessageDialog(null, "Aturan transisi belum di load");
-            //    break;
-            //}
                 if(NextAndAksi[1].compareToIgnoreCase("push") == 0)
                 {
                     StackInput.push(cc);
@@ -129,6 +123,14 @@ public class Calculator {
                     System.out.println("Asal : " + Asal + " cc : " + cc);
                     i++;
                 }
+                
+            }
+            catch(NullPointerException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Aturan transisi belum di load");
+                break;
+            }
+                
             
         }
         return ketemu;

@@ -26,6 +26,7 @@ public class FileChooser {
         String temp;
         String kolom3 = "";
         String kolom4;
+        String kolom2="";
         if(chooser.showOpenDialog(chooser)== JFileChooser.APPROVE_OPTION){
             try
             {
@@ -52,6 +53,8 @@ public class FileChooser {
                             {
                                 if(temp.equalsIgnoreCase("null"))
                                     temp = "pop";
+                                else if(temp.equalsIgnoreCase(kolom2))
+                                    temp = "nothing";
                                 else
                                     temp = "push";
                                 matrik[baris][3] = temp;
